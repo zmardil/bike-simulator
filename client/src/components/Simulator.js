@@ -98,10 +98,10 @@ const Simulator = (props) => {
     handlebarOffsetX: 0,
     handlebarOffsetY: 0,
     showShadow: true,
-    showPillion: true,
+    showPillion: false,
     pillionSize: 170,
     pillionPosition: 0,
-    showArms: true,
+    showArms: false,
   });
 
   const container =

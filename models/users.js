@@ -5,6 +5,7 @@ const UserSchema = mongoose.Schema({
   password: String,
   firstName: String,
   lastName: String,
+  isApproved: { type: Boolean, default: false },
 });
 
 const User = mongoose.model("user", UserSchema);
