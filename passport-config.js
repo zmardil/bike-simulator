@@ -20,6 +20,6 @@ export default (passport) => {
   });
 
   passport.deserializeUser((email, cb) => {
-    cb(err, email);
+    cb(null, email);
   });
 };
