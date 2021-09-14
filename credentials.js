@@ -1,4 +1,4 @@
 export default {
-  email: "btzardil@gmail.com",
+  email: "admin@admin.com",
   password: "admin",
 };
