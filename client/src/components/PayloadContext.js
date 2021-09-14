@@ -15,10 +15,14 @@ const Context = ({ children }) => {
     fussy: 428,
     lenkerx: 677,
     lenkery: 116,
-    soziussitzx: 175,
-    soziussitzy: 120,
-    soziusfussx: 223,
-    soziusfussy: 308,
+    // soziussitzx: 175,
+    // soziussitzy: 120,
+    // soziusfussx: 223,
+    // soziusfussy: 308,
+    soziussitzx: null,
+    soziussitzy: null,
+    soziusfussx: null,
+    soziusfussy: null,
   });
 
   return (

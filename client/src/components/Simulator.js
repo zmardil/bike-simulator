@@ -122,7 +122,7 @@ const Simulator = (props) => {
             <TuneRoundedIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            <Typography variant="subtitle1" component="span">
+            <Typography variant="h6" component="span">
               StreetBiker
             </Typography>
             &nbsp;

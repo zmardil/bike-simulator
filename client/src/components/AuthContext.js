@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
-export const AuthContext = createContext({});
+export const AuthContext = createContext();
 
 const Context = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -11,7 +11,6 @@ const Context = ({ children }) => {
       try {
         await axios.get("/auth");
         setIsAuthenticated(true);
-        console.log("some");
       } catch (e) {
         setIsAuthenticated(false);
         console.log(e);

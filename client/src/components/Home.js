@@ -63,10 +63,12 @@ const Hero = () => {
           Motorcycle Simulator
         </Typography>
         <Button
-          color="secondary"
+          color="inherit"
           variant="outlined"
           style={{ color: "white" }}
           endIcon={<KeyboardArrowRightRoundedIcon />}
+          component={Link}
+          to="/simulator"
         >
           Simulation
         </Button>
@@ -150,7 +152,7 @@ const Home = () => {
                 component={Link}
                 to="/simulator"
               >
-                Goto Simulation
+                Go to Simulation
               </Button>
             </Box>
           </Grid>

@@ -11,6 +11,31 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
 }));
 
+const SettingMeta = (props) => {
+  const { title, value, metric } = props;
+  return (
+    <Box display="flex">
+      <Typography
+        id="body-size-slider"
+        variant="subtitle2"
+        color="textSecondary"
+        style={{ flexGrow: 1 }}
+        gutterBottom
+      >
+        {title}
+      </Typography>
+      <Typography
+        id="body-size-slider"
+        variant="subtitle2"
+        color="textSecondary"
+        gutterBottom
+      >
+        {value} {metric}
+      </Typography>
+    </Box>
+  );
+};
+
 const Settings = (props) => {
   const classes = useStyles();
   const { settings, setSettings } = props;
@@ -27,16 +52,8 @@ const Settings = (props) => {
         >
           Rider
         </Typography>
-        <Typography
-          id="body-size-slider"
-          variant="subtitle2"
-          color="textSecondary"
-          gutterBottom
-        >
-          Body Size
-        </Typography>
+        <SettingMeta title="Body size" value={settings.bodySize} metric="cm" />
         <Slider
-          name="lineWidth"
           onChange={(e, value) =>
             setSettings((prev) => ({ ...prev, bodySize: value }))
           }
@@ -47,16 +64,12 @@ const Settings = (props) => {
           size="small"
           ria-labelledby="body-size-slider"
         />
-        <Typography
-          id="arm-angle-slider"
-          variant="subtitle2"
-          color="textSecondary"
-          gutterBottom
-        >
-          Arm Angle
-        </Typography>
+        <SettingMeta
+          title="Arm angle"
+          value={settings.armAngleMax}
+          metric="&#176;"
+        />
         <Slider
-          name="lineWidth"
           onChange={(e, value) =>
             setSettings((prev) => ({ ...prev, armAngleMax: value }))
           }
@@ -67,16 +80,12 @@ const Settings = (props) => {
           size="small"
           ria-labelledby="arm-angle-slider"
         />
-        <Typography
-          id="driver-seat-position-slider"
-          variant="subtitle2"
-          color="textSecondary"
-          gutterBottom
-        >
-          Seating Position
-        </Typography>
+        <SettingMeta
+          title="Seating position"
+          value={settings.driverOffset}
+          metric="cm"
+        />
         <Slider
-          name="lineWidth"
           onChange={(e, value) =>
             setSettings((prev) => ({ ...prev, driverOffset: value }))
           }
@@ -87,33 +96,28 @@ const Settings = (props) => {
           size="small"
           ria-labelledby="driver-seat-position-slider"
         />
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                color="primary"
-                size="small"
-                checked={settings.footOnGround}
-                onChange={(e) =>
-                  setSettings((prev) => ({
-                    ...prev,
-                    footOnGround: !settings.footOnGround,
-                  }))
-                }
-              />
-            }
-            labelPlacement="start"
-            label={
-              <Typography
-                variant="subtitle2"
-                color="textSecondary"
-                gutterBottom
-              >
-                Foot On Ground
-              </Typography>
+
+        <Box my={2} display="flex">
+          <Typography
+            variant="subtitle2"
+            color="textSecondary"
+            style={{ flexGrow: 1 }}
+            gutterBottom
+          >
+            Foot on Ground
+          </Typography>
+          <Switch
+            color="primary"
+            size="small"
+            checked={settings.footOnGround}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                footOnGround: !settings.footOnGround,
+              }))
             }
           />
-        </FormGroup>
+        </Box>
 
         <Typography
           id="body-size-slider"
@@ -121,18 +125,14 @@ const Settings = (props) => {
           color="primary"
           gutterBottom
         >
-          Passenger
+          Pillion
         </Typography>
-        <Typography
-          id="pillion-size-position-slider"
-          variant="subtitle2"
-          color="textSecondary"
-          gutterBottom
-        >
-          Pillion Height
-        </Typography>
+        <SettingMeta
+          title="Pillion height"
+          value={settings.pillionSize}
+          metric="cm"
+        />
         <Slider
-          name="lineWidth"
           onChange={(e, value) =>
             setSettings((prev) => ({ ...prev, pillionSize: value }))
           }
@@ -143,16 +143,12 @@ const Settings = (props) => {
           size="small"
           ria-labelledby="pillion-size-position-slider"
         />
-        <Typography
-          id="pillion-position-slider"
-          variant="subtitle2"
-          color="textSecondary"
-          gutterBottom
-        >
-          Seating Position
-        </Typography>
+        <SettingMeta
+          title="Pillion position"
+          value={settings.pillionPosition}
+          metric="cm"
+        />
         <Slider
-          name="lineWidth"
           onChange={(e, value) =>
             setSettings((prev) => ({ ...prev, pillionPosition: value }))
           }
@@ -163,60 +159,48 @@ const Settings = (props) => {
           size="small"
           ria-labelledby="pillion-position-slider"
         />
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                color="primary"
-                size="small"
-                checked={settings.showPillion}
-                onChange={(e) =>
-                  setSettings((prev) => ({
-                    ...prev,
-                    showPillion: !settings.showPillion,
-                  }))
-                }
-              />
-            }
-            labelPlacement="start"
-            label={
-              <Typography
-                variant="subtitle2"
-                color="textSecondary"
-                gutterBottom
-              >
-                {settings.showPillion ? "Hide" : "Show"} Pillion
-              </Typography>
+        <Box my={2} display="flex">
+          <Typography
+            variant="subtitle2"
+            color="textSecondary"
+            style={{ flexGrow: 1 }}
+            gutterBottom
+          >
+            Show/Hide Pillion
+          </Typography>
+          <Switch
+            color="primary"
+            size="small"
+            checked={settings.showPillion}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                showPillion: !settings.showPillion,
+              }))
             }
           />
-        </FormGroup>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                color="primary"
-                size="small"
-                checked={settings.showArms}
-                onChange={(e) =>
-                  setSettings((prev) => ({
-                    ...prev,
-                    showArms: !settings.showArms,
-                  }))
-                }
-              />
-            }
-            labelPlacement="start"
-            label={
-              <Typography
-                variant="subtitle2"
-                color="textSecondary"
-                gutterBottom
-              >
-                Pillion Arms
-              </Typography>
+        </Box>
+        <Box my={2} display="flex">
+          <Typography
+            variant="subtitle2"
+            color="textSecondary"
+            style={{ flexGrow: 1 }}
+            gutterBottom
+          >
+            show/Hide Arms
+          </Typography>
+          <Switch
+            color="primary"
+            size="small"
+            checked={settings.showArms}
+            onChange={(e) =>
+              setSettings((prev) => ({
+                ...prev,
+                showArms: !settings.showArms,
+              }))
             }
           />
-        </FormGroup>
+        </Box>
       </Box>
     </div>
   );
